@@ -1,1 +1,193 @@
-/* You can add global styles to this file, and also import other style files */
+/* styles.css أو styles.scss */
+
+:root {
+  --primary: #6c63ff;
+  --accent: #ff6f61;
+  --bg-light: #f8f9fa;
+  --bg-dark: #121212;
+  --text-dark: #212529;
+  --text-light: #f1f1f1;
+  --transition: 0.3s ease-in-out;
+}
+
+body {
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  transition: var(--transition);
+}
+
+body.dark-mode {
+  background-color: var(--bg-dark) !important;
+  color: var(--text-light) !important;
+}
+
+body.dark-mode .navbar {
+  background-color: #1f1f1f !important;
+}
+
+body.dark-mode .card {
+  background-color: #1e1e1e;
+  color: var(--text-light);
+}
+
+body.dark-mode .btn-outline-primary {
+  border-color: #ccc;
+  color: #eee;
+}
+/* styles.css أو styles.scss */
+
+/* الأساس */
+body.dark-mode {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+
+/* خلى كل النصوص ترث اللون الفاتح */
+body.dark-mode, 
+body.dark-mode * {
+  color: var(--text-light) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* روابط */
+body.dark-mode a {
+  color: #90caf9 !important;
+}
+
+body.dark-mode a:hover {
+  color: #ffffff !important;
+}
+
+/* بطاقات */
+body.dark-mode .card {
+  background-color: #1e1e1e;
+}
+
+/* Navbar */
+body.dark-mode .navbar {
+  background-color: #1a1a1a !important;
+  color: var(--text-light);
+}
+
+/* Button adjustments */
+body.dark-mode .btn,
+body.dark-mode .btn-outline-primary {
+  color: var(--text-light);
+  border-color: #aaa;
+}
+
+/* Inputs, forms, etc. */
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+  background-color: #2a2a2a;
+  color: var(--text-light);
+  border-color: #444;
+}
+
+/* Tables */
+body.dark-mode table {
+  color: var(--text-light);
+}
+
+
+
+h1, h2, h3, h4, h5 {
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+button, .btn {
+  border-radius: 30px;
+  padding: 0.5rem 1.2rem;
+  transition: var(--transition);
+  font-weight: bold;
+}
+
+button:hover, .btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.navbar {
+  background: linear-gradient(90deg, #000000, #8364e8);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .navbar-brand {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white !important;
+}
+
+.navbar .nav-link {
+  color: #f1f1f1 !important;
+  font-weight: 500;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: #ffeaa7 !important;
+  transform: translateY(-2px);
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #6c63ff, #00c6ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn-gradient {
+  background: linear-gradient(135deg, #6c63ff, #00c6ff);
+  color: white;
+  border: none;
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(135deg, #574b90, #00acc1);
+  transform: scale(1.05);
+}
+
+.product-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease forwards;
+  opacity: 0;
+}
+
+.animate-card {
+  animation: slideUp 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

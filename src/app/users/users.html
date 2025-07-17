@@ -1,0 +1,55 @@
+<div class="container py-4">
+  <h2 class="mb-4 text-gradient">User List</h2>
+
+  <div *ngIf="loading" class="text-center my-4">
+    <p>Loading...</p>
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <ul *ngIf="users.length > 0" class="list-group shadow rounded-4">
+    <li
+      class="list-group-item d-flex justify-content-between align-items-center"
+      *ngFor="let user of users; let i = index"
+    >
+      <div>
+        <strong>{{ user.name.firstname }} {{ user.name.lastname }}</strong
+        ><br />
+        <small>Email: {{ user.email }}</small
+        ><br />
+        <small>Phone: {{ user.phone }}</small>
+      </div>
+      <div>
+        <button
+          class="btn btn-sm btn-outline-danger me-2"
+          (click)="deleteUser(i)"
+          title="Delete User"
+        >
+          <i class="bi bi-trash"></i>
+        </button>
+        <button
+          class="btn btn-sm btn-outline-primary"
+          (click)="editUser(user)"
+          title="Edit User"
+        >
+          <i class="bi bi-pencil"></i>
+        </button>
+      </div>
+    </li>
+  </ul>
+
+  <div *ngIf="!loading && users.length === 0" class="text-muted my-3">
+    No users to display.
+  </div>
+
+  <div class="text-end mt-4">
+    <button
+      class="btn btn-gradient btn-lg shadow rounded-pill px-4"
+      (click)="addUser()"
+    >
+      <i class="bi bi-plus-circle me-2"></i>Add User
+    </button>
+  </div>
+</div>

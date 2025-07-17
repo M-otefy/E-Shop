@@ -1,0 +1,81 @@
+<div class="container py-5 fade-in">
+  <h2
+    class="fw-bold display-6 text-gradient m-0 text-center text-md-start mb-4"
+  >
+    Our Exclusive Products
+  </h2>
+
+  <ng-container *ngIf="products$ | async as products; else loading">
+    <div *ngIf="products.length > 0; else noProducts">
+      <div class="row g-4">
+        <div
+          class="col-sm-6 col-md-4 col-lg-3"
+          *ngFor="let product of products"
+        >
+          <div
+            class="card h-100 product-card shadow-lg border-0 rounded-4 overflow-hidden"
+          >
+            <div class="ratio ratio-4x3 bg-light">
+              <img
+                [src]="
+                  product.image ||
+                  'https://via.placeholder.com/300x225?text=No+Image'
+                "
+                [alt]="product.title"
+                class="card-img-top object-fit-contain p-3"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title text-truncate" [title]="product.title">
+                {{ product.title }}
+              </h5>
+              <p
+                class="card-text text-muted flex-grow-1"
+                [title]="product.description"
+              >
+                {{ product.description | slice : 0 : 90 }}...
+              </p>
+              <div
+                class="d-flex justify-content-between align-items-center mt-3"
+              >
+                <span class="fw-bold fs-5 text-success">
+                  <i class="fas fa-dollar-sign me-1"></i
+                  >{{ product.price | currency : "USD" }}
+                </span>
+                <button
+                  class="btn btn-outline-primary btn-sm rounded-pill px-3 shadow-sm"
+                  (click)="addToCart(product)"
+                >
+                  <i class="fas fa-cart-plus me-1"></i>Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #noProducts>
+      <div class="alert alert-warning text-center shadow-sm mt-4" role="alert">
+        😔 Sorry, no products available at the moment.
+      </div>
+    </ng-template>
+  </ng-container>
+
+  <ng-template #loading>
+    <div
+      class="d-flex flex-column align-items-center justify-content-center"
+      style="height: 200px"
+    >
+      <div
+        class="spinner-border text-primary"
+        role="status"
+        style="width: 3rem; height: 3rem"
+      >
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p class="mt-3 fs-5 text-muted">Loading products...</p>
+    </div>
+  </ng-template>
+</div>

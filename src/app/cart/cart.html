@@ -1,0 +1,83 @@
+<div class="container py-5">
+  <h2 class="fw-bold display-5 text-center mb-5 text-gradient">
+    <i class="fas fa-shopping-cart me-3 text-success"></i>Your Cart
+  </h2>
+
+  <div *ngIf="localCart.length > 0; else emptyCart">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-10 col-lg-8">
+        <div class="list-group shadow rounded-4 overflow-hidden mb-4">
+          <div
+            *ngFor="let item of localCart"
+            class="list-group-item py-3 d-flex align-items-center flex-column flex-sm-row cart-item"
+          >
+            <img
+              [src]="
+                productsMap.get(item.productId)?.image ||
+                'https://via.placeholder.com/80'
+              "
+              alt="{{ productsMap.get(item.productId)?.title }}"
+              class="cart-img rounded mb-3 mb-sm-0 me-sm-4"
+              style="width: 80px; height: 80px; object-fit: contain"
+              loading="lazy"
+            />
+            <div class="flex-grow-1 text-center text-sm-start mb-3 mb-sm-0">
+              <h5 class="mb-1">
+                {{ productsMap.get(item.productId)?.title || "Product Name" }}
+              </h5>
+              <small class="text-muted">
+                {{ productsMap.get(item.productId)?.price | currency : "USD" }}
+                × {{ item.quantity }}
+              </small>
+            </div>
+            <span class="fw-bold fs-5 text-success mx-0 mx-sm-4 mb-3 mb-sm-0">
+              {{
+                (productsMap.get(item.productId)?.price || 0) * item.quantity
+                  | currency : "USD"
+              }}
+            </span>
+            <button
+              class="btn btn-outline-danger btn-sm rounded-circle"
+              (click)="removeItem(item)"
+              aria-label="Remove item"
+              title="Remove item"
+            >
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="d-flex flex-column flex-sm-row justify-content-between align-items-center mb-4 px-3 border-top pt-3"
+        >
+          <h4 class="mb-3 mb-sm-0 fw-bold">Total:</h4>
+          <h3 class="text-success mb-0">
+            ${{ totalPrice | currency : "USD" }}
+          </h3>
+        </div>
+
+        <div class="text-center text-sm-end">
+          <button
+            class="btn btn-success btn-lg shadow rounded-pill px-4"
+            (click)="checkout()"
+          >
+            <i class="fas fa-credit-card me-2"></i>Checkout
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #emptyCart>
+    <div class="text-center py-5">
+      <i class="fas fa-shopping-basket fa-5x text-muted mb-4"></i>
+      <p class="fs-4 text-muted">🧺 Your cart is empty.</p>
+      <a
+        routerLink="/products"
+        class="btn btn-outline-primary btn-lg rounded-pill px-4"
+      >
+        <i class="fas fa-store me-2"></i>Continue Shopping
+      </a>
+    </div>
+  </ng-template>
+</div>
